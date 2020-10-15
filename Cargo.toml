@@ -18,9 +18,12 @@ default = []
 [dependencies]
 wgpu = "0.6"
 log = "0.4"
-imgui = "0.5"
 bytemuck = "1"
 smallvec = "1"
+
+[dependencies.imgui]
+git = "https://github.com/luke-titley/imgui-docking-rs.git"
+branch = "release/docking/0.5.0"
 
 [dev-dependencies]
 wgpu-subscriber = "0.1"
@@ -32,7 +35,8 @@ cgmath = "0.17"
 bytemuck = { version = "1.4", features = ["derive"] }
 
 [dev-dependencies.imgui-winit-support]
-version = "0.5"
+git = "https://github.com/luke-titley/imgui-docking-rs.git"
+branch = "release/docking/0.5.0"
 default-features = false
 features = ["winit-22"]
 
