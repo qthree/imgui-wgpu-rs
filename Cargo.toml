@@ -16,7 +16,8 @@ license = "MIT OR Apache-2.0"
 default = []
 
 [dependencies]
-wgpu = "0.6"
+#wgpu = "0.6"
+wgpu = { git = "https://github.com/gfx-rs/wgpu-rs.git" }
 log = "0.4"
 bytemuck = "1"
 smallvec = "1"
