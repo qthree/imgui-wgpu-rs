@@ -120,6 +120,7 @@ impl Texture {
             lod_max_clamp: 100.0,
             compare: None,
             anisotropy_clamp: None,
+            border_color: None,
         });
 
         // Create the texture bind group from the layout.
@@ -324,7 +325,7 @@ impl Renderer {
             layout: &uniform_layout,
             entries: &[BindGroupEntry {
                 binding: 0,
-                resource: BindingResource::Buffer(uniform_buffer.slice(..)),
+                resource: uniform_buffer.as_entire_binding(),
             }],
         });
 
@@ -377,6 +378,7 @@ impl Renderer {
                 depth_bias: 0,
                 depth_bias_slope_scale: 0.0,
                 depth_bias_clamp: 0.0,
+                polygon_mode: PolygonMode::Fill,
             }),
             primitive_topology: PrimitiveTopology::TriangleList,
             color_states: &[ColorStateDescriptor {
