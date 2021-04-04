@@ -172,7 +172,7 @@ impl Texture {
     pub fn write(&self, queue: &Queue, data: &[u8], width: u32, height: u32) {
         queue.write_texture(
             // destination (sub)texture
-            TextureCopyView {
+            ImageCopyTexture {
                 texture: &self.texture,
                 mip_level: 0,
                 origin: Origin3d { x: 0, y: 0, z: 0 },
@@ -180,10 +180,10 @@ impl Texture {
             // source bitmap data
             data,
             // layout of the source bitmap
-            TextureDataLayout {
+            ImageDataLayout {
                 offset: 0,
-                bytes_per_row: width * 4,
-                rows_per_image: height,
+                bytes_per_row: Some(std::num::NonZeroU32::new(width * 4).unwrap()),
+                rows_per_image: Some(std::num::NonZeroU32::new(height).unwrap()),
             },
             // size of the source bitmap
             Extent3d {
@@ -395,12 +395,12 @@ impl Renderer {
                 }],
             },
             primitive: PrimitiveState {
-                conservative: false,
                 topology: PrimitiveTopology::TriangleList,
                 strip_index_format: None,
                 front_face: FrontFace::Cw,
                 cull_mode: None,
                 polygon_mode: PolygonMode::Fill,
+                conservative: false,
             },
             depth_stencil: depth_format.map(|format| wgpu::DepthStencilState {
                 format,
