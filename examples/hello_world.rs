@@ -18,7 +18,7 @@ fn main() {
     // Set up window and GPU
     let event_loop = EventLoop::new();
 
-    let instance = wgpu::Instance::new(wgpu::BackendBit::PRIMARY);
+    let instance = wgpu::Instance::new(wgpu::BackendBit::VULKAN);
 
     let (window, size, surface) = {
         let version = env!("CARGO_PKG_VERSION");
