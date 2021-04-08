@@ -401,6 +401,7 @@ impl Renderer {
                 cull_mode: None,
                 polygon_mode: PolygonMode::Fill,
                 conservative: false,
+                clamp_depth: false,
             },
             depth_stencil: depth_format.map(|format| wgpu::DepthStencilState {
                 format,
@@ -408,7 +409,6 @@ impl Renderer {
                 depth_compare: wgpu::CompareFunction::Always,
                 stencil: wgpu::StencilState::default(),
                 bias: DepthBiasState::default(),
-                clamp_depth: false,
             }),
             multisample: MultisampleState::default(),
             fragment: Some(FragmentState {
